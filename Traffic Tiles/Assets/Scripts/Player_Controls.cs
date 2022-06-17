@@ -9,10 +9,10 @@ public class Player_Controls : MonoBehaviour
 
     public Transform[] spawn;
 
-    public List<GameObject> clones1 = new List<GameObject>(); //list of active tiles in first column.
-    public List<GameObject> clones2 = new List<GameObject>(); //list of active tiles in second column.
+    public List<GameObject> clones1 = new List<GameObject>(); //list of tiles in first column.
+    public List<GameObject> clones2 = new List<GameObject>(); //list of tiles in second column.
 
-    //identifies each tile in the bottom row.
+    //identifies each tile in the active row.
     public bool red1 = false;
     public bool amber1 = false;
     public bool green1 = false;
@@ -23,8 +23,8 @@ public class Player_Controls : MonoBehaviour
 
     public float playerZ = 0; //player's z axis.
 
-    [HideInInspector] public int increase; //distance between each row of tiles.
-    [HideInInspector] public int maximum = 5; //identifies when the count must stop.
+    public int increase; //z value increases by x amount per row of tiles.
+    public int maximum = 4; //maximum number of elements in a given list.
 
 
     void Start()
@@ -34,6 +34,7 @@ public class Player_Controls : MonoBehaviour
         increase = GameObject.FindGameObjectWithTag("Spawn").GetComponent<Tile_Spawn>().increase;
     }
 
+    //identifies each tile in the active row and sets bool values accordingly.
     void OnTriggerEnter(Collider other)
     {
         if (player[0].tag == "Column_1")
@@ -102,8 +103,19 @@ public class Player_Controls : MonoBehaviour
         {
             Cycle2();
         }
+
+        if (Input.GetKeyDown("w"))
+        {
+            CycleForward();
+        }
+
+        if (Input.GetKeyDown("s"))
+        {
+            CycleBackward();
+        }
     }
 
+    //moves the player up to the next row of tiles and spawns a new tile at the top of each column.
     void PlayerMove()
     {
         green1 = false;
@@ -121,8 +133,7 @@ public class Player_Controls : MonoBehaviour
 
         GameObject.FindGameObjectWithTag("Spawn").GetComponent<Tile_Spawn>().count = 0;
         GameObject.FindGameObjectWithTag("Spawn").GetComponent<Tile_Spawn>().limit = 1;
-        GameObject.FindGameObjectWithTag("Spawn").GetComponent<Tile_Spawn>().max = 2;
-        GameObject.FindGameObjectWithTag("Spawn").GetComponent<Tile_Spawn>().start = transform.position.z + 32;
+        GameObject.FindGameObjectWithTag("Spawn").GetComponent<Tile_Spawn>().row = transform.position.z + 24;
         GameObject.FindGameObjectWithTag("Spawn").GetComponent<Tile_Spawn>().Spawn();
     }
 
@@ -131,6 +142,7 @@ public class Player_Controls : MonoBehaviour
         //GameObject.FindObjectWithTag("Move").GetComponent<Tile_Move>().Move();
     }
 
+    //cycles tile in column 1 forward one colour (red --> amber --> green --> red).
     void Cycle1()
     {
         if (red1)
@@ -154,6 +166,7 @@ public class Player_Controls : MonoBehaviour
         CleanList();
     }
 
+    //cycles tile in column 2 forward one colour (red --> amber --> green --> red).
     void Cycle2()
     {
         if (red2)
@@ -177,6 +190,91 @@ public class Player_Controls : MonoBehaviour
         CleanList();
     }
 
+    //cycles tiles in columns 1 and 2 forward one colour (red --> amber --> green --> red).
+    void CycleForward()
+    {
+        if (red1)
+        {
+            GameObject.Destroy(clones1[0]);
+            clones1.Add(clones1[0] = Instantiate(tile[1], spawn[0].position, Quaternion.identity));
+        }
+
+        if (amber1)
+        {
+            GameObject.Destroy(clones1[0]);
+            clones1.Add(clones1[0] = Instantiate(tile[2], spawn[0].position, Quaternion.identity));
+        }
+
+        if (green1)
+        {
+            GameObject.Destroy(clones1[0]);
+            clones1.Add(clones1[0] = Instantiate(tile[0], spawn[0].position, Quaternion.identity));
+        }
+        
+        if (red2)
+        {
+            GameObject.Destroy(clones2[0]);
+            clones2.Add(clones2[0] = Instantiate(tile[1], spawn[1].position, Quaternion.identity));
+        }
+
+        if (amber2)
+        {
+            GameObject.Destroy(clones2[0]);
+            clones2.Add(clones2[0] = Instantiate(tile[2], spawn[1].position, Quaternion.identity));
+        }
+
+        if (green2)
+        {
+            GameObject.Destroy(clones2[0]);
+            clones2.Add(clones2[0] = Instantiate(tile[0], spawn[1].position, Quaternion.identity));
+        }
+
+        CleanList();
+    }
+
+    //cycles tiles in columns 1 and 2 backward one colour (red --> green --> amber --> red).
+    void CycleBackward()
+    {
+        if (red1)
+        {
+            GameObject.Destroy(clones1[0]);
+            clones1.Add(clones1[0] = Instantiate(tile[2], spawn[0].position, Quaternion.identity));
+        }
+
+        if (amber1)
+        {
+            GameObject.Destroy(clones1[0]);
+            clones1.Add(clones1[0] = Instantiate(tile[0], spawn[0].position, Quaternion.identity));
+        }
+
+        if (green1)
+        {
+            GameObject.Destroy(clones1[0]);
+            clones1.Add(clones1[0] = Instantiate(tile[1], spawn[0].position, Quaternion.identity));
+        }
+
+        if (red2)
+        {
+            GameObject.Destroy(clones2[0]);
+            clones2.Add(clones2[0] = Instantiate(tile[2], spawn[1].position, Quaternion.identity));
+        }
+
+        if (amber2)
+        {
+            GameObject.Destroy(clones2[0]);
+            clones2.Add(clones2[0] = Instantiate(tile[0], spawn[1].position, Quaternion.identity));
+        }
+
+        if (green2)
+        {
+            GameObject.Destroy(clones2[0]);
+            clones2.Add(clones2[0] = Instantiate(tile[1], spawn[1].position, Quaternion.identity));
+        }
+
+        CleanList();
+    }
+
+    //prevents lists from exceeding the maximum number of elements.
     void CleanList()
     {
         if (clones1.Count > maximum)

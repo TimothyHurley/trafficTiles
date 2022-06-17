@@ -172,12 +172,11 @@ MonoBehaviour:
   - {fileID: 6923649426446470869, guid: 01f82b5dcf8c2184290595b8bb0e6db5, type: 3}
   clones1: []
   clones2: []
-  start: 0
+  row: 0
   count: 0
   increase: 8
-  limit: 7
+  limit: 4
   limitGreen: 7
-  max: 5
   number: 0
 --- !u!1 &615287908
 GameObject:
@@ -728,7 +727,7 @@ MonoBehaviour:
   green2: 0
   playerZ: 0
   increase: 0
-  maximum: 5
+  maximum: 4
 --- !u!54 &842438891
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -751,7 +750,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh16158
+  m_Name: pb_Mesh16300
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1706,7 +1705,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh16222
+  m_Name: pb_Mesh16364
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1870,7 +1869,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh16210
+  m_Name: pb_Mesh16352
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
