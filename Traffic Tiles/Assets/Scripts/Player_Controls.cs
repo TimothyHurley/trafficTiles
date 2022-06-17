@@ -90,7 +90,6 @@ public class Player_Controls : MonoBehaviour
     {
         if (green1 && green2)
         {
-            PlayerMove();
             TileMove();
         }
 
@@ -115,31 +114,20 @@ public class Player_Controls : MonoBehaviour
         }
     }
 
-    //moves the player up to the next row of tiles and spawns a new tile at the top of each column.
-    void PlayerMove()
-    {
-        green1 = false;
-        green2 = false;
-
-        for (float i = transform.position.z; i < playerZ + increase; i += increase)
-        {
-            transform.position = transform.position + new Vector3(0, 0, increase);
-        }
-
-        playerZ = transform.position.z;
-
-        clones1.RemoveAt(0);
-        clones2.RemoveAt(0);
-
-        GameObject.FindGameObjectWithTag("Spawn").GetComponent<Tile_Spawn>().count = 0;
-        GameObject.FindGameObjectWithTag("Spawn").GetComponent<Tile_Spawn>().limit = 1;
-        GameObject.FindGameObjectWithTag("Spawn").GetComponent<Tile_Spawn>().row = transform.position.z + 24;
-        GameObject.FindGameObjectWithTag("Spawn").GetComponent<Tile_Spawn>().Spawn();
-    }
-
+    //moves all tiles down one row.
     void TileMove()
     {
-        //GameObject.FindObjectWithTag("Move").GetComponent<Tile_Move>().Move();
+        if (green1 && green2)
+        {
+            green1 = false;
+            green2 = false;
+
+            for (int i = 0; i < maximum; i++)
+            {
+                clones1[i].GetComponent<Tile_Move>().Move();
+                clones2[i].GetComponent<Tile_Move>().Move();
+            }
+        }
     }
 
     //cycles tile in column 1 forward one colour (red --> amber --> green --> red).

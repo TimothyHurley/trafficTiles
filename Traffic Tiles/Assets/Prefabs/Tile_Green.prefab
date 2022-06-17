@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 7403520001635223417}
   - component: {fileID: 5635655937609521604}
   - component: {fileID: 583161263384917064}
+  - component: {fileID: 4531088546831744}
   m_Layer: 0
   m_Name: Tile_Green
   m_TagString: Green
@@ -333,3 +334,17 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &4531088546831744
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6923649426446470869}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3cb4d521b8aff254281ee5ba147b1ccb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tileAnim: {fileID: 583161263384917064}
+  tileMove: Tile_Move

@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 852339746674796958}
   - component: {fileID: 7878232098576148352}
   - component: {fileID: 1232574617234781242}
+  - component: {fileID: 7438150456045665733}
   m_Layer: 0
   m_Name: Tile_Amber
   m_TagString: Amber
@@ -333,3 +334,17 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &7438150456045665733
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7801497073562463626}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3cb4d521b8aff254281ee5ba147b1ccb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tileAnim: {fileID: 1232574617234781242}
+  tileMove: Tile_Move
